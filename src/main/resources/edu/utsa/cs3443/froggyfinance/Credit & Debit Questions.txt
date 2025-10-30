@@ -1,0 +1,310 @@
+﻿Loan Questions:
+
+
+# Level 1
+Q: Auto Loans are loans used to help purchase used or new cars.
+A: True
+B: False
+ANSWER: A
+
+
+Q: Student Loans are loans that anyone can get.
+A: True
+B: False
+ANSWER: B
+
+
+Q: Mortgage Loans assist with the purchase of a house.
+A: True
+B: False
+ANSWER: A
+
+
+Q: Personal Loans cannot be used for medical expenses.
+A: True
+B: False
+ANSWER: B
+
+
+Q: Credit Cards are a type of loan.
+A: True
+B: False
+ANSWER: A
+
+
+Q: Do credit cards allow you to borrow money from a bank, with the intention to pay it back?
+A: True
+B: False
+ANSWER: A
+
+
+Q: Can you pay back credit cards whenever you want without consequences?
+A: True
+B: False
+ANSWER: B
+
+
+Q: Does a debit card allow you to pay with your own money that is linked to an account?
+A: True
+B: False
+ANSWER: A
+
+
+Q: Are debit cards main types of accounts, checkings and savings?
+A: True
+B: False
+ANSWER: A
+
+
+Q: Does a prepaid card have money loaded onto it without being linked to a bank account or credit line?
+A: True
+B: False
+ANSWER: A
+
+
+
+
+# Level 2
+Q: A prepaid card automatically connects to your bank accounts, similar to a debit card.
+A: True
+B: False
+ANSWER: B
+
+
+Q: A credit card comes with unlimited money as long as you pay it back on time. 
+A: True
+B: False
+ANSWER: B
+
+
+Q: A savings account usually limits the number of withdrawals you can make each month.
+A: True
+B: False
+ANSWER: A
+
+
+Q: Prepaid cards include interest with each purchase because it is not linked to an account.
+A: True
+B: False
+ANSWER: B
+
+
+Q: Credit cards include an interest rate that the bank will charge for if you carry a balance past your due date.
+A: True
+B: False
+ANSWER: A
+
+
+Q: The Simple Interest Formula is: Interest = Principal x Rate x Time.
+A: True
+B: False
+ANSWER: A
+
+
+Q: Simple interest will not remain the same every year, and it will “grow” over time.
+A: True
+B: False
+ANSWER: B
+
+
+Q: APRs for loans include the interest rate plus other fees, expressed as a yearly percentage.
+A: True
+B: False
+ANSWER: A
+
+
+Q: Fixed-rate loans have an interest rate that stays the same for the loan term.
+A: True
+B: False
+ANSWER: A
+
+
+Q: Variable-rate loans have an interest rate that never changes.
+A: True
+B: False
+ANSWER: B
+
+
+# Level 3
+Q: Secured loans do not require any collateral.
+A: True
+B: False
+ANSWER: B
+
+
+Q: An unsecured loan typically has a higher interest rate than a secured loan.
+A: True
+B: False
+ANSWER: A
+
+
+Q: A co-signer is responsible for repaying the loan if the borrower fails.
+A: True
+B: False
+ANSWER: A
+
+
+Q: Paying more than the minimum monthly payment reduces total interest paid.
+A: True
+B: False
+ANSWER: A
+
+
+Q: You can only take out one loan at a time.
+A: True
+B: False
+ANSWER: B
+
+
+Q: If your prepaid card has a balance of $60 dollars, you can purchase an item with it that is worth $65 dollars.
+A: True
+B: False
+ANSWER: B
+
+
+Q: If your credit card has a limit of $500 dollars per month you can spend $520 as long as you pay it back early.
+A: True
+B: False
+ANSWER: B
+
+
+Q: If your savings account allows six withdrawals per month, you have to withdraw money from the account six times in order to avoid an interest fee.
+A: True
+B: False
+ANSWER: B
+
+
+Q: A debit card with overdraft protection can approve a purchase even if you don't have enough money in your checking account.
+A: True
+B: False
+ANSWER: A
+
+
+Q: Once a prepaid card runs out of money you cannot reload it to use it again.
+A: True
+B: False
+ANSWER: B
+
+
+
+
+# Level 4
+        Q: Checking accounts require a minimum balance or else the bank will charge a fee.
+A: True
+B: False
+ANSWER: A
+
+
+Q: Paying the minimum balance on a credit card will improve your credit score quickly.
+A: True
+B: False
+ANSWER: B
+
+
+Q: Debit cards don’t usually help you build a credit score.
+A: True
+B: False
+ANSWER: A
+
+
+Q: Depending on the provider, prepaid cards often have a monthly fee or reload fee.
+A: True
+B: False
+ANSWER: A
+
+
+Q: Closing a credit card account reduces your overall available credit and possibly lowering your credit score.
+A: True
+B: False
+ANSWER: A
+
+
+Q: A fixed-rate mortgage protects against rising interest rates but may cost more initially.
+A: True
+B: False
+ANSWER: A
+
+
+Q: In risk-based pricing, borrowers with higher rates always have worse credit.
+A: True
+B: False
+ANSWER: B
+
+
+Q: A secured lender has priority over unsecured creditors in bankruptcy.
+A: True
+B: False
+ANSWER: A
+
+
+Q: Adjustable rate loans may still increase payments despite interest caps.
+A: True
+B: False
+ANSWER: A
+
+
+Q: Loan syndication spreads the credit risk among multiple lenders.
+A: True
+B: False
+ANSWER: A
+
+
+# Level 5
+Q: Paying off a fixed-rate mortgage early always saves the full interest amount.
+A: True
+B: False
+ANSWER: B
+
+
+Q: The APR on a loan always equals the interest rate stated by the lender.
+A: True
+B: False
+ANSWER: B
+
+
+Q: A 0% interest loan can cost more than a standard interest loan.
+A: True
+B: False
+ANSWER: A
+
+
+Q: In a full amortization loan, the interest portion increases over time.
+A: True
+B: False
+ANSWER: B
+
+
+Q: Negative amortization happens when monthly payments exceed the interest due.
+A: True
+B: False
+ANSWER: B
+
+
+Q: A person who wants to avoid overdraft fees should use a debit card in comparison to a prepaid card.
+A: True
+B: False
+ANSWER: B
+
+
+Q: Using a credit card is beneficial to building credit score which provides a trail of reliability and strengthens your chances at getting loans, mortgages, or rental applications.
+A: True
+B: False
+ANSWER: A
+
+
+Q: Prepaid cards may be the best options for someone who wants to strictly control spending, avoid overdraft fees, and spend without a bank account.
+A: True
+B: False
+ANSWER: A
+
+
+Q: Checking accounts are better than saving accounts for earning interest, while saving accounts is better for everyday spending.
+A: True
+B: False
+ANSWER: B
+
+
+Q: Credit cards come in handy for emergency situations in comparison to debit or prepaid cards because you can borrow money beyond what's in your account. 
+A: True
+B: False
+ANSWER: A
