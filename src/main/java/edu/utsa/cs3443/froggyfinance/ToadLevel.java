@@ -67,13 +67,20 @@ public class ToadLevel {
         ScoreBox scoreBox =new ScoreBox();
         scoreBox.showScore(gameState.getCorrectAnswers(), gameState.getWrongAnswers());
 
-        QuestionManager questionManager = new QuestionManager("level1.txt", 1, keyHandler, scoreBox, gameState);
+        DialogBox dialogBox = new DialogBox();
+        DialogManager dialogManager = new DialogManager();
+        dialogManager.loadDialogsForLevel("/edu/utsa/cs3443/froggyfinance/Dialog.txt", 1);
+
+        QuestionManager questionManager = new QuestionManager("level1.txt", 1, keyHandler, scoreBox, gameState, dialogBox, dialogManager);
         root.getChildren().add(questionManager.getQuestionBox());
         StackPane.setAlignment(questionManager.getQuestionBox(), Pos.BOTTOM_CENTER);
         StackPane.setMargin(questionManager.getQuestionBox(), new Insets(20, 0, 20, 0));
         root.getChildren().add(scoreBox);
         StackPane.setAlignment(scoreBox, Pos.TOP_LEFT);
         StackPane.setMargin(scoreBox, new Insets(20));
+        root.getChildren().add(dialogBox);
+        StackPane.setAlignment(dialogBox, Pos.TOP_RIGHT);
+        StackPane.setMargin(dialogBox, new Insets(40));
 
         if (fromNextLevel) {
             playerX = 100;

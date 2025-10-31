@@ -70,7 +70,11 @@ public class CaterpillarLevel {
         ScoreBox scoreBox = new ScoreBox();
         scoreBox.showScore(gameState.getCorrectAnswers(), gameState.getWrongAnswers());
 
-        QuestionManager questionManager = new QuestionManager("level1.txt", 3, keyHandler, scoreBox, gameState);
+        DialogBox dialogBox = new DialogBox();
+        DialogManager dialogManager = new DialogManager();
+        dialogManager.loadDialogsForLevel("/edu/utsa/cs3443/froggyfinance/Dialog.txt", 3);
+
+        QuestionManager questionManager = new QuestionManager("level1.txt", 3, keyHandler, scoreBox, gameState, dialogBox, dialogManager);
         root.getChildren().add(questionManager.getQuestionBox());
         StackPane.setAlignment(questionManager.getQuestionBox(), Pos.BOTTOM_CENTER);
         StackPane.setMargin(questionManager.getQuestionBox(), new Insets(20, 0, 20, 0));

@@ -19,6 +19,9 @@ public class QuestionManager {
         private QuestionBox questionBox;
         private KeyHandler keyHandler;
         private GameState gameState;
+        private DialogBox dialogBox;
+        private DialogManager dialogManager;
+        private List<Dialog> dialogs;
     /**
      * Constructs a new QuestionManager instance
      *
@@ -28,11 +31,14 @@ public class QuestionManager {
      * @param scoreBox UI component to show updated scores
      * @param gameState Shared game state for tracking progress across levels
      */
-        public QuestionManager(String filePath, int level, KeyHandler keyHandler, ScoreBox scoreBox, GameState gameState) {
+        public QuestionManager(String filePath, int level, KeyHandler keyHandler, ScoreBox scoreBox, GameState gameState, DialogBox dialogBox, DialogManager dialogManager) {
             this.questions = QuestionLoader.loadQuestions(filePath, level);
             this.keyHandler = keyHandler;
             this.scoreBox = scoreBox;
             this.gameState = gameState;
+            this.dialogBox = dialogBox;
+            this.dialogManager = dialogManager;
+            this.dialogs = dialogManager.getDialogsForLevel(level);
             this.questionBox = new QuestionBox();
             showNextQuestion();
         }
@@ -87,9 +93,17 @@ public class QuestionManager {
                 if (selected.equalsIgnoreCase(current.getCorrectAnswer())) {
                     gameState.incrementCorrect();
                     SoundPlayer.playSound("sparkle.wav");
+                    if (dialogBox != null && dialogs != null) {
+                        Dialog currentDialog = dialogs.get(currentIndex);
+                        dialogBox.showdialog(new Dialog("", currentDialog.getRight(), ""));
+                    }
                 } else {
                     gameState.incrementWrong();
                     SoundPlayer.playSound("bruh.wav");
+                    if (dialogBox != null && dialogs != null) {
+                        Dialog currentDialog = dialogs.get(currentIndex);
+                        dialogBox.showdialog(new Dialog("", "", currentDialog.getWrong()));
+                    }
                 }
 
                 keyHandler.aPressed = false;

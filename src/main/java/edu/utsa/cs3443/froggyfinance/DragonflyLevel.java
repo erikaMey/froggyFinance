@@ -67,7 +67,11 @@ public class DragonflyLevel {
         ScoreBox scoreBox = new ScoreBox();
         scoreBox.showScore(gameState.getCorrectAnswers(), gameState.getWrongAnswers());
 
-        QuestionManager questionManager = new QuestionManager("level1.txt", 5, keyHandler, scoreBox, gameState);
+        DialogBox dialogBox = new DialogBox();
+        DialogManager dialogManager = new DialogManager();
+        dialogManager.loadDialogsForLevel("/edu/utsa/cs3443/froggyfinance/Dialog.txt", 5);
+
+        QuestionManager questionManager = new QuestionManager("level1.txt", 5, keyHandler, scoreBox, gameState, dialogBox,dialogManager);
         root.getChildren().add(questionManager.getQuestionBox());
         StackPane.setAlignment(questionManager.getQuestionBox(), Pos.BOTTOM_CENTER);
         StackPane.setMargin(questionManager.getQuestionBox(), new Insets(20, 0, 20, 0));

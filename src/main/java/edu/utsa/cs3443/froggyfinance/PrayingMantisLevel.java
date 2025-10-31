@@ -67,8 +67,11 @@ public class PrayingMantisLevel {
 
         ScoreBox scoreBox = new ScoreBox();
         scoreBox.showScore(gameState.getCorrectAnswers(), gameState.getWrongAnswers());
+        DialogBox dialogBox = new DialogBox();
+        DialogManager dialogManager = new DialogManager();
+        dialogManager.loadDialogsForLevel("/edu/utsa/cs3443/froggyfinance/Dialog.txt", 6);
 
-        QuestionManager questionManager = new QuestionManager("level1.txt", 1, keyHandler, scoreBox, gameState);
+        QuestionManager questionManager = new QuestionManager("level1.txt", 1, keyHandler, scoreBox, gameState, dialogBox, dialogManager);
         root.getChildren().add(questionManager.getQuestionBox());
         StackPane.setAlignment(questionManager.getQuestionBox(), Pos.BOTTOM_CENTER);
         StackPane.setMargin(questionManager.getQuestionBox(), new Insets(20, 0, 20, 0));
