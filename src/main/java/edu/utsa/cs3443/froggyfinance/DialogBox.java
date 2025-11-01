@@ -1,5 +1,6 @@
 package edu.utsa.cs3443.froggyfinance;
 
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -36,18 +37,12 @@ public class DialogBox extends VBox {
         setSpacing(10);
         setAlignment(Pos.CENTER_RIGHT);
 
-        setPrefWidth(600);
-        setMinWidth(600);
-        setMaxWidth(600);
-        setPrefHeight(40);
-        setMinHeight(40);
-        setMaxHeight(40);
+        setPrefWidth(110);
+        setPrefHeight(200);
+
         openLabel = createLabel();
         rightLabel = createLabel();
         wrongLabel = createLabel();
-
-        //HBox labelRow = new HBox(40); need to get this to be on the right side
-        //labelRow.setAlignment(Pos.CENTER_RIGHT);
 
         getChildren().addAll(openLabel, rightLabel, wrongLabel);
         setVisible(false);
@@ -63,25 +58,66 @@ public class DialogBox extends VBox {
         label.setTextFill(Color.WHITE);
         label.setFont(Font.font("Verdana", 16));
         label.setWrapText(true);
-        label.setMaxWidth(740);
+        label.setMaxWidth(580);
         return label;
     }
 
     /**
      * Displays the given dialog
-     * @param dialog the dialog object to display
+     * @param d the dialog object to display
      */
-    public void showdialog(Dialog dialog) {
-        openLabel.setText("OPEN" + dialog.getOpen());// need to get this to run first thing
-        rightLabel.setText("Right" + dialog.getRight());
-        wrongLabel.setText("Wrong" + dialog.getWrong());
-        setVisible(true);
+    public void showDialog(Dialog d) {
+        openLabel.setVisible(false);
+        rightLabel.setVisible(false);
+        wrongLabel.setVisible(false);
+
+        if (d.getOpen() != null && !d.getOpen().isEmpty()) {
+            openLabel.setText(d.getOpen());
+            openLabel.setVisible(true);
+
+        }
+        Platform.runLater(() -> {
+            setVisible(true);
+            toFront();
+            layout();
+        });
     }
 
+    public void showFeedback(String text, boolean isCorrect) {
+        Platform.runLater(() -> {
+                    openLabel.setText("");
+                    rightLabel.setText("");
+                    wrongLabel.setText("");
+                    openLabel.setVisible(false);
+                    rightLabel.setVisible(false);
+                    wrongLabel.setVisible(false);
+
+                    if (text != null && !text.isEmpty()) {
+                        if (isCorrect) {
+                            rightLabel.setText(text);
+                            rightLabel.setVisible(true);
+                        } else {
+                            wrongLabel.setText(text);
+                            wrongLabel.setVisible(true);
+                        }
+                    }
+                    //Platform.runLater(() -> {
+                        setVisible(true);
+                        toFront();
+                        layout();
+                    });
+               // });
+    }
     /**
      * Hides the dialog box from view
      */
     public void hide() {
+        openLabel.setText("");
+        rightLabel.setText("");
+        wrongLabel.setText("");
+        openLabel.setVisible(false);
+        rightLabel.setVisible(false);
+        wrongLabel.setVisible(false);
         setVisible(false);
     }
 }

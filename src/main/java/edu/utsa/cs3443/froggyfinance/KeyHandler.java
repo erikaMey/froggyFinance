@@ -20,6 +20,7 @@ public class KeyHandler {
     public boolean rightPressed;
     public boolean aPressed;
     public boolean bPressed;
+    public boolean spacePressed;
 
     /**
      * Registers key press and release listeners to the specified JavaFX
@@ -35,6 +36,7 @@ public class KeyHandler {
             if (code == KeyCode.RIGHT) rightPressed = true;
             if (code == KeyCode.A) aPressed = true;
             if (code == KeyCode.B) bPressed = true;
+            if(code == KeyCode.SPACE) spacePressed = true;
         });
 
         scene.setOnKeyReleased(event -> {
@@ -45,6 +47,7 @@ public class KeyHandler {
             if (code == KeyCode.RIGHT) rightPressed = false;
             if (code == KeyCode.A) aPressed = false;
             if (code == KeyCode.B) bPressed = false;
+            if(code == KeyCode.SPACE) spacePressed = false;
         });
     }
 }

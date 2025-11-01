@@ -67,7 +67,7 @@ public class LevelManager {
     /**
      * Resets the game to the first level and restarts the scene
      *
-     * @param stage stage The JavaFX stage to reset
+     * @param stage stage The JavaFX stage to resetOpenDialogs
      */
     public static void reset(Stage stage) {
         currentLevel = 0;

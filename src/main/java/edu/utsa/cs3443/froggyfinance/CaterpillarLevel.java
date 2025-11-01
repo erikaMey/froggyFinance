@@ -81,6 +81,12 @@ public class CaterpillarLevel {
         root.getChildren().add(scoreBox);
         StackPane.setAlignment(scoreBox, Pos.TOP_LEFT);
         StackPane.setMargin(scoreBox, new Insets(20));
+        root.getChildren().add(dialogBox);
+        StackPane.setAlignment(dialogBox, Pos.TOP_RIGHT);
+        dialogBox.setTranslateX(210);
+        dialogBox.setTranslateY(10);
+        StackPane.setMargin(dialogBox, new Insets(20, 250, 200, 150));
+        dialogBox.maxWidthProperty().bind(root.widthProperty().multiply(0.9));
 
 
         if (fromNextLevel) {

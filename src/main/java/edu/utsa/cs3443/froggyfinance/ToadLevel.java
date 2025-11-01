@@ -80,7 +80,11 @@ public class ToadLevel {
         StackPane.setMargin(scoreBox, new Insets(20));
         root.getChildren().add(dialogBox);
         StackPane.setAlignment(dialogBox, Pos.TOP_RIGHT);
-        StackPane.setMargin(dialogBox, new Insets(40));
+        dialogBox.setTranslateX(210);
+        dialogBox.setTranslateY(10);
+        StackPane.setMargin(dialogBox, new Insets(20, 250, 200, 150));
+        dialogBox.maxWidthProperty().bind(root.widthProperty().multiply(0.9));
+
 
         if (fromNextLevel) {
             playerX = 100;

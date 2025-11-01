@@ -189,7 +189,7 @@ ANSWER: B
 
 
 # Level 4
-        Q: Checking accounts require a minimum balance or else the bank will charge a fee.
+Q: Checking accounts require a minimum balance or else the bank will charge a fee.
 A: True
 B: False
 ANSWER: A
@@ -308,3 +308,65 @@ Q: Credit cards come in handy for emergency situations in comparison to debit or
 A: True
 B: False
 ANSWER: A
+
+# Level 6
+
+Q: Auto Loans are loans used to help purchase used or new cars.
+A: True
+B: False
+ANSWER: A
+
+
+Q: Student Loans are loans that anyone can get.
+A: True
+B: False
+ANSWER: B
+
+
+Q: Mortgage Loans assist with the purchase of a house.
+A: True
+B: False
+ANSWER: A
+
+
+Q: Personal Loans cannot be used for medical expenses.
+A: True
+B: False
+ANSWER: B
+
+
+Q: Credit Cards are a type of loan.
+A: True
+B: False
+ANSWER: A
+
+
+Q: Do credit cards allow you to borrow money from a bank, with the intention to pay it back?
+A: True
+B: False
+ANSWER: A
+
+
+Q: Can you pay back credit cards whenever you want without consequences?
+A: True
+B: False
+ANSWER: B
+
+
+Q: Does a debit card allow you to pay with your own money that is linked to an account?
+A: True
+B: False
+ANSWER: A
+
+
+Q: Are debit cards main types of accounts, checkings and savings?
+A: True
+B: False
+ANSWER: A
+
+
+Q: Does a prepaid card have money loaded onto it without being linked to a bank account or credit line?
+A: True
+B: False
+ANSWER: A
+

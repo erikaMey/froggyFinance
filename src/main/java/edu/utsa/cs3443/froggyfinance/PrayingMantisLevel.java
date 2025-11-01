@@ -71,13 +71,19 @@ public class PrayingMantisLevel {
         DialogManager dialogManager = new DialogManager();
         dialogManager.loadDialogsForLevel("/edu/utsa/cs3443/froggyfinance/Dialog.txt", 6);
 
-        QuestionManager questionManager = new QuestionManager("level1.txt", 1, keyHandler, scoreBox, gameState, dialogBox, dialogManager);
+        QuestionManager questionManager = new QuestionManager("level1.txt", 6, keyHandler, scoreBox, gameState, dialogBox, dialogManager);
         root.getChildren().add(questionManager.getQuestionBox());
         StackPane.setAlignment(questionManager.getQuestionBox(), Pos.BOTTOM_CENTER);
         StackPane.setMargin(questionManager.getQuestionBox(), new Insets(20, 0, 20, 0));
         root.getChildren().add(scoreBox);
         StackPane.setAlignment(scoreBox, Pos.TOP_LEFT);
         StackPane.setMargin(scoreBox, new Insets(20));
+        root.getChildren().add(dialogBox);
+        StackPane.setAlignment(dialogBox, Pos.TOP_RIGHT);
+        dialogBox.setTranslateX(210);
+        dialogBox.setTranslateY(10);
+        StackPane.setMargin(dialogBox, new Insets(20, 250, 200, 150));
+        dialogBox.maxWidthProperty().bind(root.widthProperty().multiply(0.9));
 
         if (fromNextLevel) {
             playerX = 100;

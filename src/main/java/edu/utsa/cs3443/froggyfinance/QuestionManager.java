@@ -1,8 +1,11 @@
 package edu.utsa.cs3443.froggyfinance;
 
-
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import java.util.List;
+
 
 /**
  * The QuestionManager class handles the logic for presenting and evaluating
@@ -13,6 +16,13 @@ import java.util.List;
  * @author erikamey
  */
 public class QuestionManager {
+
+    private enum State{
+        OPENING_DIALOGS,
+        QUESTION_ACTIVE,
+        FEEDBACK_SHOWING,
+        FINISHED
+    }
         private List<Question> questions;
         private int currentIndex = 0;
         private ScoreBox scoreBox;
@@ -21,7 +31,10 @@ public class QuestionManager {
         private GameState gameState;
         private DialogBox dialogBox;
         private DialogManager dialogManager;
-        private List<Dialog> dialogs;
+        private Timeline feedBackTimer;
+
+        private State state = State.OPENING_DIALOGS;
+
     /**
      * Constructs a new QuestionManager instance
      *
@@ -38,9 +51,10 @@ public class QuestionManager {
             this.gameState = gameState;
             this.dialogBox = dialogBox;
             this.dialogManager = dialogManager;
-            this.dialogs = dialogManager.getDialogsForLevel(level);
+            dialogManager.loadDialogsForLevel(filePath, level);
             this.questionBox = new QuestionBox();
-            showNextQuestion();
+            this.questionBox.setVisible(false);
+            showNextOpeningDialog();
         }
 
     /**
@@ -58,7 +72,7 @@ public class QuestionManager {
      * @return true if there are no more questions to show, otherwise false
      */
         public boolean isFinished() {
-            return currentIndex >= questions.size();
+            return state == State.FINISHED;
         }
 
     /**
@@ -84,37 +98,95 @@ public class QuestionManager {
      * a key is pressed (A or B), it checks the answer, updates the score,
      * plays a sound, and moves to the next question.
      */
-        public void update() {
-            if (!questionBox.isVisible() || isFinished()) return;
+    public void update() {
 
-            if (keyHandler.aPressed || keyHandler.bPressed) {
-                String selected = keyHandler.aPressed ? "A" : "B";
-                Question current = questions.get(currentIndex);
-                if (selected.equalsIgnoreCase(current.getCorrectAnswer())) {
+        switch (state) {
+            case OPENING_DIALOGS:
+                handleOpeningDialogs();
+                break;
+
+            case QUESTION_ACTIVE:
+                handleQuestionInput();
+                break;
+
+            case FEEDBACK_SHOWING:
+                break;
+        }
+    }
+    private void handleOpeningDialogs() {
+        if (keyHandler.spacePressed) {
+            Dialog next = dialogManager.getNextOpeningDialog();
+            if (next != null) {
+                dialogBox.showDialog(next);
+            } else {
+                state = State.QUESTION_ACTIVE;
+                //questionBox.setVisible(true);
+                showNextQuestion();
+            }
+            keyHandler.spacePressed = false;
+        }
+    }
+    private void handleQuestionInput() {
+        if (!questionBox.isVisible() || currentIndex >= questions.size()) {
+            state = State.FINISHED;
+            return;
+        }
+        if (keyHandler.aPressed || keyHandler.bPressed) {
+            Question current = questions.get(currentIndex);
+            Dialog feedback = dialogManager.getFeedbackDialog(currentIndex);
+            String selected = keyHandler.aPressed ? "A" : "B";
+
+            boolean correct = selected.equalsIgnoreCase(current.getCorrectAnswer());
+
+                if (correct) {
                     gameState.incrementCorrect();
                     SoundPlayer.playSound("sparkle.wav");
-                    if (dialogBox != null && dialogs != null) {
-                        Dialog currentDialog = dialogs.get(currentIndex);
-                        dialogBox.showdialog(new Dialog("", currentDialog.getRight(), ""));
-                    }
+                    //dialogBox.showFeedback(feedback.getRight(), true);
                 } else {
                     gameState.incrementWrong();
                     SoundPlayer.playSound("bruh.wav");
-                    if (dialogBox != null && dialogs != null) {
-                        Dialog currentDialog = dialogs.get(currentIndex);
-                        dialogBox.showdialog(new Dialog("", "", currentDialog.getWrong()));
-                    }
+                   // dialogBox.showFeedback(feedback.getWrong(), false);
+                }
+                if (dialogBox != null && feedback != null) {
+                    dialogBox.showFeedback(correct ? feedback.getRight() : feedback.getWrong(), correct);
                 }
 
-                keyHandler.aPressed = false;
-                keyHandler.bPressed = false;
+            scoreBox.showScore(gameState.getCorrectAnswers(), gameState.getWrongAnswers());
+            state = State.FEEDBACK_SHOWING;
 
-                scoreBox.showScore(gameState.getCorrectAnswers(), gameState.getWrongAnswers());
-
-                currentIndex++;
-                showNextQuestion();
+            if (feedBackTimer != null){
+                feedBackTimer.stop();
             }
+            feedBackTimer = new Timeline(new KeyFrame(Duration.seconds(1.0), e -> {
+                dialogBox.hide();
+                currentIndex++;
+               //if (currentIndex < questions.size()) {
+                    showNextQuestion();
+                    state = State.QUESTION_ACTIVE;
+              // }else{
+                   // questionBox.hide();
+                   // state = State.FINISHED;
+                //}
+            }));
+            feedBackTimer.setCycleCount(1);
+            feedBackTimer.play();
+
+            keyHandler.aPressed = false;
+            keyHandler.bPressed = false;
         }
+    }
+
+    private void showNextOpeningDialog() {
+        Dialog next = dialogManager.getNextOpeningDialog();
+        if (next != null) {
+            dialogBox.showDialog(next);
+            state = State.OPENING_DIALOGS;
+        } else {
+            state = State.QUESTION_ACTIVE;
+            questionBox.setVisible(true);
+            showNextQuestion();
+        }
+    }
 
     /**
      * Displays the next question in the list, or hides the question box if finished
@@ -123,10 +195,13 @@ public class QuestionManager {
             if (currentIndex < questions.size()) {
                 Question current = questions.get(currentIndex);
                 questionBox.showQuestion(current);
+                questionBox.setVisible(true);
             } else {
                 questionBox.hide();
+                state = State.FINISHED;
             }
         }
+
     }
 
 

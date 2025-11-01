@@ -40,9 +40,9 @@ public class ScoreBox extends VBox {
         setPrefWidth(700);
         setMinWidth(700);
         setMaxWidth(700);
-        setPrefHeight(20);
-        setMinHeight(20);
-        setMaxHeight(20);
+        setPrefHeight(13);
+        setMinHeight(13);
+        setMaxHeight(13);
         questionRight = createLabel();
         questionWrong = createLabel();
         score = createLabel();
