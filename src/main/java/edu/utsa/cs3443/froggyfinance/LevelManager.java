@@ -59,7 +59,11 @@ public class LevelManager {
      */
     public static void previousLevel(Stage stage) {
         if (currentLevel > 0) {
-            currentLevel--;
+            if(currentLevel == 2){
+                currentLevel = 0;
+            }else {
+                currentLevel--;
+            }
             stage.setScene(getLevelScene(currentLevel, stage, false));
         }
     }
@@ -72,6 +76,15 @@ public class LevelManager {
     public static void reset(Stage stage) {
         currentLevel = 0;
         stage.setScene(getLevelScene(currentLevel, stage, true));
+    }
+
+    public static void jumpToLevel(Stage stage, int destinationLevel){
+        if(destinationLevel >= 0 && destinationLevel < TOTAL_LEVELS){
+            currentLevel = destinationLevel;
+            stage.setScene(getLevelScene(currentLevel, stage, true));
+        } else {
+            System.out.println("No Level");
+        }
     }
 }
 

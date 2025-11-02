@@ -144,7 +144,7 @@ public class ToadLevel {
         if (playerX > WIDTH - PLAYER_SIZE - 20 && playerY > HEIGHT - PLAYER_SIZE - 20) {
             System.out.println(" Exiting Toad Level...");
             timer.stop();
-            LevelManager.nextLevel(stage);
+            LevelManager.previousLevel(stage);
         }
         if (playerX < 50 && playerY < 50) {
             System.out.println(" Exiting Toad Level...");

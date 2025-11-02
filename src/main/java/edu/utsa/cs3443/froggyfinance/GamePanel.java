@@ -8,6 +8,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
+import javafx.geometry.Rectangle2D;
 import java.net.URL;
 
 /**
@@ -33,6 +34,17 @@ public class GamePanel {
     private static KeyHandler keyHandler;
     private static AnimationTimer timer;
 
+    private static final double BANK_X_START = 500;
+    private static final double BANK_Y_START = 100;
+    private static final double BANK_WIDTH = 50;
+    private static final double BANK_HEIGHT = 50;
+    private static final Rectangle2D BANK_BOUNDS = new Rectangle2D(BANK_X_START, BANK_Y_START, BANK_WIDTH, BANK_HEIGHT);
+
+    private static final double HUT_X_START = 450;
+    private static final double HUT_Y_START = 250;
+    private static final double HUT_WIDTH = 50;
+    private static final double HUT_HEIGHT = 50;
+    private static final Rectangle2D HUT_BOUNDS = new Rectangle2D(HUT_X_START, HUT_Y_START, HUT_WIDTH, HUT_HEIGHT);
 
     /**
      * Creates and returns the main game, including background rendering,
@@ -100,12 +112,21 @@ public class GamePanel {
         if (keyHandler.leftPressed) playerX -= 4;
         if (keyHandler.rightPressed) playerX += 4;
 
+        Rectangle2D playerBounds = new Rectangle2D(playerX, playerY, PLAYER_SIZE, PLAYER_SIZE);
 
-        if (playerX > WIDTH - 50 && playerY > HEIGHT - 50) {
-
+        Rectangle2D bankArea = new Rectangle2D(BANK_X_START, BANK_Y_START, BANK_WIDTH, BANK_HEIGHT);
+        if(playerBounds.intersects(bankArea)){
+            System.out.println("Lobby");
+            timer.stop();
+            LevelManager.jumpToLevel(primaryStage, 2);
+            return;
+        }
+        Rectangle2D hutArea = new Rectangle2D(HUT_X_START, HUT_Y_START, HUT_WIDTH, HUT_HEIGHT);
+        if (playerBounds.intersects(hutArea)) {
             System.out.print("Toad Level");
             timer.stop();
-            LevelManager.nextLevel(primaryStage);
+            LevelManager.jumpToLevel(primaryStage, 1);
+            return;
         }
 
 
