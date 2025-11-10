@@ -24,7 +24,7 @@ public class DialogBox extends VBox {
     private Label wrongLabel;
 
     /**
-     * Constructs a QuestionBox
+     * Constructs a DialogBox
      */
     public DialogBox() {
         BackgroundFill bgFill = new BackgroundFill(
@@ -83,6 +83,11 @@ public class DialogBox extends VBox {
         });
     }
 
+    /**
+     * shows the feedback for right wrong questions
+     * @param text the right wrong answers
+     * @param isCorrect if the question is correct
+     */
     public void showFeedback(String text, boolean isCorrect) {
         Platform.runLater(() -> {
                     openLabel.setText("");
@@ -101,12 +106,10 @@ public class DialogBox extends VBox {
                             wrongLabel.setVisible(true);
                         }
                     }
-                    //Platform.runLater(() -> {
                         setVisible(true);
                         toFront();
                         layout();
                     });
-               // });
     }
     /**
      * Hides the dialog box from view

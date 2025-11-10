@@ -113,6 +113,10 @@ public class QuestionManager {
                 break;
         }
     }
+
+    /**
+     * handles the opening dialog
+     */
     private void handleOpeningDialogs() {
         if (keyHandler.spacePressed) {
             Dialog next = dialogManager.getNextOpeningDialog();
@@ -120,20 +124,28 @@ public class QuestionManager {
                 dialogBox.showDialog(next);
             } else {
                 state = State.QUESTION_ACTIVE;
-                //questionBox.setVisible(true);
+
                 showNextQuestion();
             }
             keyHandler.spacePressed = false;
         }
     }
+
+    /**
+     * handles the questions, sound and right wrong answer dialog
+     */
     private void handleQuestionInput() {
+        boolean aWasPressed = keyHandler.aPressed;
+        boolean bWasPressed = keyHandler.bPressed;
+        keyHandler.aPressed = false;
+        keyHandler.bPressed = false;
         if (!questionBox.isVisible() || currentIndex >= questions.size()) {
             state = State.FINISHED;
             return;
         }
-        if (keyHandler.aPressed || keyHandler.bPressed) {
+        if (aWasPressed || bWasPressed) {
             Question current = questions.get(currentIndex);
-            Dialog feedback = dialogManager.getFeedbackDialog(currentIndex);
+            Dialog feedback = dialogManager.getFeedbackDialog(0);
             String selected = keyHandler.aPressed ? "A" : "B";
 
             boolean correct = selected.equalsIgnoreCase(current.getCorrectAnswer());
@@ -141,11 +153,11 @@ public class QuestionManager {
                 if (correct) {
                     gameState.incrementCorrect();
                     SoundPlayer.playSound("sparkle.wav");
-                    //dialogBox.showFeedback(feedback.getRight(), true);
+
                 } else {
                     gameState.incrementWrong();
                     SoundPlayer.playSound("bruh.wav");
-                   // dialogBox.showFeedback(feedback.getWrong(), false);
+
                 }
                 if (dialogBox != null && feedback != null) {
                     dialogBox.showFeedback(correct ? feedback.getRight() : feedback.getWrong(), correct);
@@ -157,25 +169,20 @@ public class QuestionManager {
             if (feedBackTimer != null){
                 feedBackTimer.stop();
             }
-            feedBackTimer = new Timeline(new KeyFrame(Duration.seconds(1.0), e -> {
+            feedBackTimer = new Timeline(new KeyFrame(Duration.seconds(2.0), e -> {
                 dialogBox.hide();
                 currentIndex++;
-               //if (currentIndex < questions.size()) {
-                    showNextQuestion();
-                    state = State.QUESTION_ACTIVE;
-              // }else{
-                   // questionBox.hide();
-                   // state = State.FINISHED;
-                //}
+                showNextQuestion();
+                state = State.QUESTION_ACTIVE;
             }));
             feedBackTimer.setCycleCount(1);
             feedBackTimer.play();
-
-            keyHandler.aPressed = false;
-            keyHandler.bPressed = false;
         }
     }
 
+    /**
+     * shows the opening dialog
+     */
     private void showNextOpeningDialog() {
         Dialog next = dialogManager.getNextOpeningDialog();
         if (next != null) {

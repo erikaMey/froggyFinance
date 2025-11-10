@@ -1,11 +1,11 @@
 package edu.utsa.cs3443.froggyfinance;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.List;
 
 /**
- *
+ * Manages the dialog
  *
  * @author erikamey
  * @since 10/30/25
